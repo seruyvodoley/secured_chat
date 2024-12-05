@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/crypto-js"></script>
+
+<script src="app.js" defer></script>
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Chat</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <h1>Welcome to Secure Chat</h1>
+        
+        <!-- Форма для логина -->
+        <div id="login-form">
+            <h2>Login</h2>
+            <form id="login" onsubmit="login(event)">
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            <p>Don't have an account? <a href="javascript:void(0);" onclick="showRegisterForm()">Register here</a></p>
+        </div>
+
+        <!-- Форма для регистрации -->
+        <div id="register-form" style="display:none;">
+            <h2>Register</h2>
+            <form id="register" onsubmit="register(event)">
+                <input type="text" id="reg-username" placeholder="Username" required>
+                <input type="password" id="reg-password" placeholder="Password" required>
+                <button type="submit">Register</button>
+            </form>
+            <p>Already have an account? <a href="javascript:void(0);" onclick="showLoginForm()">Login here</a></p>
+        </div>
+
+        <!-- Интерфейс чата -->
+        <div id="chat" style="display:none;">
+            <h2>Chat</h2>
+            <div id="messages" class="messages"></div>
+            <input type="text" id="message-input" placeholder="Type a message..." onkeyup="checkEnter(event)">
+            <button id="send-btn" onclick="sendMessage()">Send</button>
+            <button onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+
+</body>
+</html>
